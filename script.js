@@ -26,7 +26,8 @@ const genresData = [
                 image: "images/looter_shooter_highres_custom_1780881608750.png",
                 def: "슈팅 게임에 RPG의 아이템 파밍(루팅) 요소를 결합한 장르입니다.",
                 features: ["반복적인 아이템 파밍", "캐릭터 스킬 트리 성장", "강력한 보스와 레이드"],
-                examples: "데스티니 가디언즈, 보더랜드, 퍼스트 디센던트"
+                examples: "데스티니 가디언즈, 보더랜드, 퍼스트 디센던트",
+                hasGame: "looterShooter"
             },
             {
                 name: "익스트랙션 슈터 (Extraction Shooter) 🚁",
