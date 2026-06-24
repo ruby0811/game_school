@@ -34,7 +34,8 @@ const genresData = [
                 image: "images/extraction_shooter_highres_custom_1780881749297.png",
                 def: "전장에 진입해 귀중한 아이템을 파밍하고 무사히 탈출해야 하는 하드코어 장르입니다.",
                 features: ["탈출 실패 시 모든 아이템 상실", "극도의 긴장감", "PvPvE (유저+AI 복합 전투)"],
-                examples: "이스케이프 프롬 타르코프, 다크 앤 다커"
+                examples: "이스케이프 프롬 타르코프, 다크 앤 다커",
+                hasGame: "extractionShooter"
             }
         ]
     },
