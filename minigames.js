@@ -4005,8 +4005,8 @@ visualNovel: {
             { bg: 'url(images/bg_classroom_1782693441002.png)', char: '', name: '나 (독백)', text: '어떻게 반응해야 할까?' },
             {
                 bg: 'url(images/bg_classroom_1782693441002.png)', choices: [
-                    { text: '뭐, 뭐래! 징그럽게...', next: 1, aff: 0 },
-                    { text: '그래, 평생 내가 책임져줄게.', next: 1, aff: +20 }
+                    { text: '뭐, 뭐래! 징그럽게...', nextScene: 1, aff: 0 },
+                    { text: '그래, 평생 내가 책임져줄게.', nextScene: 1, aff: +20 }
                 ]
             }
         ],
@@ -4022,8 +4022,8 @@ visualNovel: {
                 { bg: 'url(images/bg_street_1782693449320.png)', char: '', name: '나 (독백)', text: '얼굴이 화끈거린다. 단둘이 주말에 카페라니... 이거 데이트 신청 아니야?' },
                 {
                     bg: 'url(images/bg_street_1782693449320.png)', choices: [
-                        { text: '어? 어, 그래... 같이 가자.', next: 2, aff: +10 },
-                        { text: '케이크 쏘는 거지? 당근 가야지!', next: 2, aff: 0 }
+                        { text: '어? 어, 그래... 같이 가자.', nextScene: 2, aff: +10 },
+                        { text: '케이크 쏘는 거지? 당근 가야지!', nextScene: 2, aff: 0 }
                     ]
                 }
             ],
@@ -4039,8 +4039,8 @@ visualNovel: {
                 { bg: 'url(images/bg_cafe_1782693458325.png)', char: 'siwoo', name: '시우', text: '왜 놀라고 그래. 예쁜 걸 예쁘다고 한 건데.' },
                 {
                     bg: 'url(images/bg_cafe_1782693458325.png)', choices: [
-                        { text: '너, 너 뭐 잘못 먹었어?', next: 3, aff: 0 },
-                        { text: '(얼굴을 붉히며) ...고마워.', next: 3, aff: +20 }
+                        { text: '너, 너 뭐 잘못 먹었어?', nextScene: 3, aff: 0 },
+                        { text: '(얼굴을 붉히며) ...고마워.', nextScene: 3, aff: +20 }
                     ]
                 }
             ],
@@ -4054,17 +4054,10 @@ visualNovel: {
                 { bg: 'url(images/bg_park_1782693472786.png)', char: 'siwoo', name: '시우', text: '나, 너 좋아해. 아주 오래 전부터.' },
                 { bg: 'url(images/bg_park_1782693472786.png)', char: '', name: '나 (독백)', text: '드디어 올 것이 왔다. 내 마음을 전할 차례다.' },
                 {
-                    bg: 'url(images/bg_park_1782693472786.png)', condition: (state) => state.aff >= 40,
+                    bg: 'url(images/bg_park_1782693472786.png)', 
                     choices: [
-                        { text: '나도... 나도 너 좋아했어. 계속.', next: 4 },
-                        { text: '장난치지 마. 우린 그냥 친구잖아.', next: 5 }
-                    ]
-                },
-                {
-                    bg: 'url(images/bg_park_1782693472786.png)', condition: (state) => state.aff < 40,
-                    choices: [
-                        { text: '나도... 나도 너 좋아했어. 계속.', next: 4 },
-                        { text: '장난치지 마. 우린 그냥 친구잖아.', next: 5 }
+                        { text: '나도... 나도 너 좋아했어. 계속.', nextScene: 4 },
+                        { text: '장난치지 마. 우린 그냥 친구잖아.', nextScene: 5 }
                     ]
                 }
             ],
@@ -4091,7 +4084,7 @@ visualNovel: {
                 <div id="vn-bg" style="position:absolute;width:100%;height:100%;background-color:#ffe4e1;transition:background 0.5s;"></div>
                 <div id="vn-char-container" style="position:absolute;width:100%;height:100%;display:flex;justify-content:center;align-items:flex-end;">
                     <img id="vn-char-protag" src="${this.cg.protag}" style="height:80%;display:none;margin-right:-50px;z-index:2;filter:drop-shadow(0 0 10px rgba(0,0,0,0.3));">
-                    <img id="vn-char-yujin" src="${this.cg.yujin}" style="height:90%;display:none;z-index:1;filter:drop-shadow(0 0 10px rgba(0,0,0,0.3));">
+                    <img id="vn-char-siwoo" src="${this.cg.siwoo}" style="height:90%;display:none;z-index:1;filter:drop-shadow(0 0 10px rgba(0,0,0,0.3));">
                 </div>
                 <div id="vn-dialogue-box" style="position:absolute;bottom:20px;left:5%;width:90%;height:150px;background:rgba(0,0,0,0.75);border:2px solid #fff;border-radius:10px;padding:20px;box-sizing:border-box;color:#fff;font-family:sans-serif;cursor:pointer;z-index:10;">
                     <div id="vn-name" style="font-weight:bold;font-size:22px;color:#ffb6c1;margin-bottom:10px;"></div>
@@ -4113,7 +4106,7 @@ visualNovel: {
             this.epilogueBox = this.container.querySelector('#vn-epilogue');
             this.epilogueText = this.container.querySelector('#vn-epilogue-text');
             this.charProtag = this.container.querySelector('#vn-char-protag');
-            this.charYujin = this.container.querySelector('#vn-char-yujin');
+            this.charSiwoo = this.container.querySelector('#vn-char-siwoo');
             
             this.container.querySelector('#vn-x-btn').onclick = () => this.close();
             this.container.querySelector('#vn-close-btn').onclick = () => this.close();
@@ -4201,10 +4194,10 @@ visualNovel: {
             
             // Character display logic
             this.charProtag.style.display = (msg.char === 'protag') ? 'block' : 'none';
-            this.charYujin.style.display = (msg.char === 'yujin') ? 'block' : 'none';
+            this.charSiwoo.style.display = (msg.char === 'siwoo') ? 'block' : 'none';
             if (msg.char === 'both') {
                 this.charProtag.style.display = 'block';
-                this.charYujin.style.display = 'block';
+                this.charSiwoo.style.display = 'block';
             }
         },
 
@@ -4231,9 +4224,18 @@ visualNovel: {
                 if (choice.effect.bf) this.state.bf += choice.effect.bf;
                 if (choice.effect.final) this.state.finalChoice = choice.effect.final;
             }
+            if (choice.aff) this.state.aff += choice.aff; // support direct aff
+            
             this.choicesBox.style.display = 'none';
             this.state.mode = 'dialogue';
-            this.state.msgIndex = choice.next;
+            
+            if (choice.nextScene !== undefined) {
+                this.state.scene = choice.nextScene;
+                this.state.currentScript = this.dialogueScripts[this.state.scene];
+                this.state.msgIndex = 0;
+            } else {
+                this.state.msgIndex = choice.next;
+            }
             this._renderMessage();
         },
 
