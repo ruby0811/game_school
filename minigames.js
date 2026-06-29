@@ -4112,7 +4112,7 @@ visualNovel: {
             this.container.querySelector('#vn-close-btn').onclick = () => this.close();
             this.dialogueBox.onclick = () => this._nextMessage();
             
-            this.state = { aff: 0, fri: 0, bf: 0, scene: 0, msgIndex: 0, mode: 'dialogue', currentScript: this.script[0] };
+            this.state = { aff: 0, fri: 0, bf: 0, scene: 0, msgIndex: 0, mode: 'dialogue', currentScript: this.script };
             this.isPlaying = true;
             this._renderMessage();
         },
@@ -4202,6 +4202,10 @@ visualNovel: {
         },
 
         _nextMessage() {
+            // guard: if we're past the script, do nothing
+            if (!this.state.currentScript || this.state.msgIndex >= this.state.currentScript.length - 1) {
+                if (this.state.mode !== 'choice') return;
+            }
             if (this.state.mode !== 'dialogue') return;
             const msg = this.state.currentScript[this.state.msgIndex];
             
