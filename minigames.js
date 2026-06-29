@@ -4082,6 +4082,10 @@ visualNovel: {
             
             this.container.innerHTML = `
                 <div id="vn-bg" style="position:absolute;width:100%;height:100%;background-color:#ffe4e1;transition:background 0.5s;"></div>
+                <div id="vn-char-container" style="position:absolute;width:100%;height:100%;display:flex;justify-content:center;align-items:flex-end;pointer-events:none;">
+                    <img id="vn-char-protag" src="${this.cg.protag}" style="height:85%;display:none;position:absolute;bottom:140px;left:5%;object-fit:contain;filter:drop-shadow(2px 4px 8px rgba(0,0,0,0.5));mix-blend-mode:multiply;transition:opacity 0.3s;">
+                    <img id="vn-char-siwoo" src="${this.cg.siwoo}" style="height:85%;display:none;position:absolute;bottom:140px;right:5%;object-fit:contain;filter:drop-shadow(2px 4px 8px rgba(0,0,0,0.5));mix-blend-mode:multiply;transition:opacity 0.3s;">
+                </div>
                 
                 <div id="vn-dialogue-box" style="position:absolute;bottom:20px;left:5%;width:90%;height:150px;background:rgba(0,0,0,0.75);border:2px solid #fff;border-radius:10px;padding:20px;box-sizing:border-box;color:#fff;font-family:sans-serif;cursor:pointer;z-index:10;">
                     <div id="vn-name" style="font-weight:bold;font-size:22px;color:#ffb6c1;margin-bottom:10px;"></div>
@@ -4102,8 +4106,8 @@ visualNovel: {
             this.choicesBox = this.container.querySelector('#vn-choices');
             this.epilogueBox = this.container.querySelector('#vn-epilogue');
             this.epilogueText = this.container.querySelector('#vn-epilogue-text');
-            this.charProtag = null;
-            this.charSiwoo = null;
+            this.charProtag = this.container.querySelector('#vn-char-protag');
+            this.charSiwoo = this.container.querySelector('#vn-char-siwoo');
             
             this.container.querySelector('#vn-x-btn').onclick = () => this.close();
             this.container.querySelector('#vn-close-btn').onclick = () => this.close();
@@ -4190,8 +4194,8 @@ visualNovel: {
             this.textEl.innerText = msg.text || '';
             
             // Character display logic
-            if (this.charProtag) this.charProtag.style.display = (msg.char === 'protag') ? 'block' : 'none';
-            if (this.charSiwoo) this.charSiwoo.style.display = (msg.char === 'siwoo') ? 'block' : 'none';
+            if (this.charProtag) this.charProtag.style.display = (msg.char === 'protag' || msg.char === 'both') ? 'block' : 'none';
+            if (this.charSiwoo) this.charSiwoo.style.display = (msg.char === 'siwoo' || msg.char === 'both') ? 'block' : 'none';
             if (msg.char === 'both') {
                 this.charProtag.style.display = 'block';
                 this.charSiwoo.style.display = 'block';
