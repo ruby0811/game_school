@@ -5638,8 +5638,8 @@ racing: {
             const addSegment = (curve, y) => {
                 this.segments.push({
                     index: this.segments.length,
-                    p1: { world: { y: this.segments.length * this.segmentLength, z: 0 }, camera: {}, screen: {} },
-                    p2: { world: { y: (this.segments.length + 1) * this.segmentLength, z: 0 }, camera: {}, screen: {} },
+                    p1: { world: { y: 0, z: this.segments.length * this.segmentLength }, camera: {}, screen: {} },
+                    p2: { world: { y: 0, z: (this.segments.length + 1) * this.segmentLength }, camera: {}, screen: {} },
                     curve: curve,
                     sprites: [],
                     color: Math.floor(this.segments.length / this.rumbleLength) % 2 ? 
