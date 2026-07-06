@@ -283,7 +283,8 @@ const genresData = [
                 image: "images/마크.jpg",
                 def: "정해진 목표 없이 높은 자유도를 바탕으로 가상 세계에서 원하는 대로 건설하고 탐험하는 장르입니다.",
                 features: ["높은 자유도와 창의적 제작", "비선형적 플레이", "모드(Mod) 친화적 환경"],
-                examples: "마인크래프트, 테라리아, 팩토리오, 게리스 모드"
+                examples: "마인크래프트, 테라리아, 팩토리오, 게리스 모드",
+                hasGame: "sandbox"
             },
             {
                 name: "로그라이크 (Roguelike) 🎲",
