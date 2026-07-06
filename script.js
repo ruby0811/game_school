@@ -85,7 +85,7 @@ const genresData = [
         subGenres: [
             {
                 name: "RTS (Real-Time Strategy) - 실시간 전략 ⚔️",
-                image: "images/RTS.jpg",
+                image: "images/rts_main.png",
                 def: "턴제가 아닌 실시간으로 진행되며, 자원 수집, 기지 건설, 병력 운용을 모두 실시간으로 관리합니다.",
                 features: ["실시간 자원/기지 관리", "유닛 생산과 군대 지휘", "빠른 마우스 컨트롤(APM)과 멀티태스킹", "테크 트리 발전"],
                 examples: "스타크래프트, 워크래프트, 에이지 오브 엠파이어",
