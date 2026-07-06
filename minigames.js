@@ -5533,9 +5533,9 @@ racing: {
         W: 800, H: 600, keys: {},
         
         // Game State
-        speed: 0, maxSpeed: 200, accel: 2, breaking: -4, decel: -1,
-        offRoadDecel: -5, offRoadLimit: 50,
-        position: 0, playerX: 0, steerSpeed: 3, 
+        speed: 0, maxSpeed: 400, accel: 5, breaking: -6, decel: -1.5,
+        offRoadDecel: -8, offRoadLimit: 80,
+        position: 0, playerX: 0, steerSpeed: 5, 
         
         // Track
         segments: [], segmentLength: 200, trackLength: 0, drawDistance: 300,
