@@ -444,7 +444,7 @@ function renderSubGenreDetails(sub, parentImage) {
                         return;
                     }
                     try {
-                        MiniGames[sub.hasGame].init(imgContainer);
+                        MiniGames.launch(sub.hasGame, sub.name);
                     } catch (e) {
                         alert("미니게임 실행 중 오류 발생: " + e.message);
                     }
