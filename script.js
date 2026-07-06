@@ -190,7 +190,8 @@ const genresData = [
                 image: "images/스포츠.jpg",
                 def: "축구, 농구, 야구 등 실제 스포츠를 디지털로 구현하여 실제 팀과 선수를 기반으로 즐기는 장르입니다.",
                 features: ["실제 룰과 물리 반영", "선수 능력치 및 전술", "커리어/시즌 모드", "매년 업데이트되는 시리즈 모델"],
-                examples: "FIFA(FC), NBA 2K, MLB 더 쇼, 매든 NFL"
+                examples: "FIFA(FC), NBA 2K, MLB 더 쇼, 매든 NFL",
+                hasGame: "sports"
             },
             {
                 name: "레이싱 (Racing) 🏎️",
