@@ -120,7 +120,8 @@ const genresData = [
                 image: "images/4X.jpg",
                 def: "탐험, 확장, 개척, 섬멸을 테마로 제국이나 국가를 운영하는 거시적 전략 장르입니다.",
                 features: ["거대한 스케일의 지도", "외교, 무역, 정치, 종교 시스템", "극도로 긴 플레이 타임"],
-                examples: "문명 시리즈, 스텔라리스, 크루세이더 킹즈"
+                examples: "문명 시리즈, 스텔라리스, 크루세이더 킹즈",
+                hasGame: "stellaris"
             },
             {
                 name: "오토 배틀러 (Auto Battler) ♟️",
