@@ -112,7 +112,8 @@ const genresData = [
                 image: "images/배틀로얄.jpg",
                 def: "다수의 플레이어가 좁아지는 맵에서 아이템을 파밍하며 마지막 생존자가 될 때까지 싸우는 장르입니다.",
                 features: ["대규모 대전 및 생존", "장비 수집(파밍)", "시간에 따라 축소되는 안전 구역", "높은 긴장감과 전략적 판단"],
-                examples: "배틀그라운드(PUBG), 포트나이트, 에이펙스 레전드"
+                examples: "배틀그라운드(PUBG), 포트나이트, 에이펙스 레전드",
+                hasGame: "battleRoyale"
             },
             {
                 name: "4X 및 대전략 (Grand Strategy) 👑",
