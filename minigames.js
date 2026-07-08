@@ -7743,6 +7743,8 @@ moba: {
         const { overlay, gameContainer } = MiniGames._createOverlay();
         this.overlay = overlay;
         gameContainer.style.backgroundColor = '#111';
+        gameContainer.style.width = '1000px';
+        gameContainer.style.maxWidth = '95vw';
         
         // Add Close Button
         const closeBtn = document.createElement('button');
