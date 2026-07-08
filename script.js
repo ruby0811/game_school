@@ -104,7 +104,8 @@ const genresData = [
                 image: "images/moba.jpg",
                 def: "두 팀이 고유 능력을 가진 챔피언을 선택해 상대 본진을 파괴하는 팀 기반 전략 장르(AOS)입니다.",
                 features: ["5v5 등 팀 기반 대전", "다양한 챔피언 라인업", "라인과 미니언, 성장 시스템", "팀워크 및 오브젝트 장악 필수"],
-                examples: "리그 오브 레전드, 도타 2, 히어로즈 오브 더 스톰"
+                examples: "리그 오브 레전드, 도타 2, 히어로즈 오브 더 스톰",
+                hasGame: "moba"
             },
             {
                 name: "배틀로얄 (Battle Royale) 🎪",
