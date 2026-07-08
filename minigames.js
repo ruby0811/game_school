@@ -7744,6 +7744,15 @@ moba: {
         this.overlay = overlay;
         gameContainer.style.backgroundColor = '#111';
         
+        // Add Close Button
+        const closeBtn = document.createElement('button');
+        closeBtn.innerText = '✕';
+        closeBtn.style.cssText = `position:absolute;top:20px;right:20px;background:rgba(0,0,0,0.6);color:#fff;border:2px solid #fff;border-radius:50%;width:40px;height:40px;font-size:20px;cursor:pointer;z-index:9999;font-weight:bold;transition:background 0.2s;`;
+        closeBtn.onmouseover = () => closeBtn.style.background = 'rgba(231, 76, 60, 0.8)';
+        closeBtn.onmouseout = () => closeBtn.style.background = 'rgba(0,0,0,0.6)';
+        closeBtn.onclick = () => this.close();
+        gameContainer.appendChild(closeBtn);
+        
         this.canvas = document.createElement('canvas');
         this.canvas.width = this.W;
         this.canvas.height = this.H;
@@ -7790,12 +7799,12 @@ moba: {
             const my = (e.clientY - rect.top) * (this.H / rect.height);
             
             if (this.state === 'select') {
-                const cardW = 200, cardH = 300, gap = 50;
-                const startX = this.W/2 - (cardW*3 + gap*2)/2;
+                const cardW = 160, cardH = 260, gap = 20;
+                const startX = 60; // Shifted left
                 let i = 0;
                 for (let k in this.CHAMP_DEFS) {
                     const cx = startX + i*(cardW+gap);
-                    const cy = this.H/2 - cardH/2;
+                    const cy = this.H/2 - cardH/2 + 20;
                     if (mx >= cx && mx <= cx+cardW && my >= cy && my <= cy+cardH) {
                         this.startGame(k);
                         break;
@@ -8230,17 +8239,17 @@ moba: {
 
         if (this.state === 'select') {
             ctx.fillStyle = '#fff';
-            ctx.font = 'bold 40px Arial';
-            ctx.textAlign = 'center';
-            ctx.fillText('챔피언 선택', this.W/2, 100);
+            ctx.font = 'bold 36px Arial';
+            ctx.textAlign = 'left';
+            ctx.fillText('챔피언 선택', 60, 80);
             
-            const cardW = 200, cardH = 300, gap = 50;
-            const startX = this.W/2 - (cardW*3 + gap*2)/2;
+            const cardW = 160, cardH = 260, gap = 20;
+            const startX = 60;
             let i = 0;
             for (let k in this.CHAMP_DEFS) {
                 const def = this.CHAMP_DEFS[k];
                 const cx = startX + i*(cardW+gap);
-                const cy = this.H/2 - cardH/2;
+                const cy = this.H/2 - cardH/2 + 20;
                 
                 ctx.fillStyle = '#2c3e50';
                 ctx.fillRect(cx, cy, cardW, cardH);
@@ -8249,20 +8258,51 @@ moba: {
                 ctx.strokeRect(cx, cy, cardW, cardH);
                 
                 ctx.fillStyle = '#fff';
-                ctx.font = '60px Arial';
-                ctx.fillText(def.icon, cx + cardW/2, cy + 100);
+                ctx.font = '50px Arial';
+                ctx.textAlign = 'center';
+                ctx.fillText(def.icon, cx + cardW/2, cy + 80);
                 
-                ctx.font = 'bold 24px Arial';
-                ctx.fillText(def.name, cx + cardW/2, cy + 160);
+                ctx.font = 'bold 20px Arial';
+                ctx.fillText(def.name, cx + cardW/2, cy + 130);
                 
-                ctx.font = '16px Arial';
+                ctx.font = '14px Arial';
                 ctx.fillStyle = '#bdc3c7';
-                ctx.fillText('HP: ' + def.hp, cx + cardW/2, cy + 200);
-                ctx.fillText('ATK: ' + def.atk, cx + cardW/2, cy + 230);
-                ctx.fillText('Role: ' + def.role, cx + cardW/2, cy + 260);
+                ctx.fillText('HP: ' + def.hp, cx + cardW/2, cy + 170);
+                ctx.fillText('ATK: ' + def.atk, cx + cardW/2, cy + 200);
+                ctx.fillText('Role: ' + def.role, cx + cardW/2, cy + 230);
                 
                 i++;
             }
+
+            // Draw Instructions on the right side
+            const infoX = startX + 3*(cardW+gap) + 20;
+            const infoY = 80;
+            ctx.textAlign = 'left';
+            
+            ctx.fillStyle = '#e94560';
+            ctx.font = 'bold 24px Arial';
+            ctx.fillText('🎮 게임 목표', infoX, infoY + 30);
+            
+            ctx.fillStyle = '#fff';
+            ctx.font = '16px Arial';
+            ctx.fillText('• 5명의 아군(본인 포함)과 5명의 적군이 대결합니다.', infoX, infoY + 65);
+            ctx.fillText('• 미니언과 함께 적의 포탑을 차례대로 파괴하세요.', infoX, infoY + 95);
+            ctx.fillText('• 적 진영 가장 안쪽의 [넥서스]를 파괴하면 승리합니다!', infoX, infoY + 125);
+            
+            ctx.fillStyle = '#2980b9';
+            ctx.font = 'bold 24px Arial';
+            ctx.fillText('🕹️ 플레이 방법', infoX, infoY + 180);
+            
+            ctx.fillStyle = '#fff';
+            ctx.font = '16px Arial';
+            ctx.fillText('• 이동 및 기본 공격 : 마우스 우클릭', infoX, infoY + 215);
+            ctx.fillText('• 챔피언 스킬 사용 : 키보드 Q, W, E, R', infoX, infoY + 245);
+            ctx.fillText('• 카메라 시점 전환 : Space (챔피언 고정 / 자유 이동)', infoX, infoY + 275);
+            ctx.fillText('• 카메라 자유 이동 : W, A, S, D 또는 방향키', infoX, infoY + 305);
+            
+            ctx.fillStyle = '#f1c40f';
+            ctx.font = 'bold 18px Arial';
+            ctx.fillText('💡 왼쪽에서 챔피언 카드를 클릭하면 바로 시작합니다!', infoX, infoY + 370);
             return;
         }
 
