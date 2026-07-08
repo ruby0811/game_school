@@ -93,10 +93,11 @@ const genresData = [
             },
             {
                 name: "턴제 전략 (Turn-based Strategy) 🎯",
-                image: "images/턴제 전략.jpg",
+                image: "images/civ_cover.png",
                 def: "차례대로 행동을 취하는 전략 게임으로, 시간 제한 없이 신중한 전술적 판단과 깊이 있는 구상이 특징입니다.",
                 features: ["차례를 번갈아 가며 진행", "충분한 전략 구상 시간", "확률과 전술적 위치 선정", "외교/경제 등 다양한 승리 조건"],
-                examples: "문명 시리즈, XCOM, 파이어 엠블렘, 토탈 워"
+                examples: "문명 시리즈, XCOM, 파이어 엠블렘, 토탈 워",
+                hasGame: "civilization"
             },
             {
                 name: "MOBA 🏆",
