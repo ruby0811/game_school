@@ -128,7 +128,8 @@ const genresData = [
                 image: "images/오토.jpg",
                 def: "무작위로 뜨는 유닛을 구매해 배치하면, 유닛들이 시너지를 발휘하며 자동으로 전투하는 장르입니다.",
                 features: ["자동 전투 시스템", "유닛 종족/직업 시너지 맞추기", "운과 전략의 밸런스"],
-                examples: "전략적 팀 전투(롤토체스), 도타 언더로드"
+                examples: "전략적 팀 전투(롤토체스), 도타 언더로드",
+                hasGame: "autoBattler"
             }
         ]
     },
