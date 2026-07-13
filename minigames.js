@@ -9351,15 +9351,34 @@ stellaris: {
         this.nodes[1].owner = 2; this.nodes[1].name = 'Zarqlan (AI)';
         this.nodes[1].x = this.W - 100; this.nodes[1].y = this.H/2;
         
-        // Connect nodes
-        for(let i=0; i<numNodes; i++) {
-            let n1 = this.nodes[i];
-            let distances = this.nodes.map((n, idx) => ({ idx, d: Math.hypot(n.x - n1.x, n.y - n1.y) })).filter(d => d.idx !== i).sort((a,b)=>a.d - b.d);
+        // Connect nodes to guarantee a fully connected graph (Minimum Spanning Tree)
+        let connected = [this.nodes[0]];
+        let unconnected = this.nodes.slice(1);
+        
+        while(unconnected.length > 0) {
+            let bestDist = Infinity;
+            let bestN1 = null, bestN2 = null, bestIdx = -1;
             
-            // connect to 2-3 closest
+            for(let n1 of connected) {
+                for(let i=0; i<unconnected.length; i++) {
+                    let n2 = unconnected[i];
+                    let d = Math.hypot(n1.x - n2.x, n1.y - n2.y);
+                    if(d < bestDist) {
+                        bestDist = d; bestN1 = n1; bestN2 = n2; bestIdx = i;
+                    }
+                }
+            }
+            this.links.push({ n1: bestN1, n2: bestN2 });
+            connected.push(bestN2);
+            unconnected.splice(bestIdx, 1);
+        }
+        
+        // Add a few extra links to create web/loops (connect to closest neighbors if not already linked)
+        for(let n1 of this.nodes) {
+            let distances = this.nodes.map((n, idx) => ({ n, d: Math.hypot(n.x - n1.x, n.y - n1.y) })).filter(x => x.n !== n1).sort((a,b)=>a.d - b.d);
             for(let k=0; k<2; k++) {
                 if(distances[k]) {
-                    let n2 = this.nodes[distances[k].idx];
+                    let n2 = distances[k].n;
                     if(!this.links.some(l => (l.n1===n1 && l.n2===n2) || (l.n1===n2 && l.n2===n1))) {
                         this.links.push({ n1, n2 });
                     }
