@@ -7134,8 +7134,9 @@ civilization: {
                 const tile = this.getTile(nx, ny);
                 if (!tile || !this.TERRAIN[tile.type].move || visited.has(key)) return;
                 const eo = this.getUnitAt(nx, ny);
-                if (eo && eo.owner !== unit.owner) {
-                    // Can attack
+                const ec = this.getCityAt(nx, ny);
+                if ((eo && eo.owner !== unit.owner) || (ec && ec.owner !== unit.owner && !eo)) {
+                    // Can attack unit or empty city
                     result.push({ x: nx, y: ny, attack: true });
                     visited.set(key, true);
                     return;
@@ -7170,7 +7171,7 @@ civilization: {
 
             if (target) {
                 if (target.attack) {
-                    this.combat(selUnit, this.getUnitAt(tx, ty));
+                    this.combat(selUnit, this.getUnitAt(tx, ty) || this.getCityAt(tx, ty));
                     selUnit.moved = true; selUnit.movesLeft = 0;
                     this.selected = null;
                 } else {
@@ -7232,19 +7233,32 @@ civilization: {
     },
 
     combat(attacker, defender) {
+        let isCity = !defender.type;
+        const defRoll = (defender.def !== undefined ? defender.def : 0) + Math.floor(Math.random() * 2);
         const atkRoll = attacker.atk + Math.floor(Math.random() * 3);
-        const defRoll = defender.def + Math.floor(Math.random() * 2);
         const dmg = Math.max(1, atkRoll - defRoll);
         defender.hp -= dmg;
+        
         const defCity = this.getCityAt(defender.x, defender.y);
-        if (defCity) defCity.hp -= dmg * 2;
+        if (defCity && !isCity) defCity.hp -= dmg * 2;
 
         if (defender.hp <= 0) {
-            this.units = this.units.filter(u => u !== defender);
-            this.addLog(`${this.UNIT_TYPES[attacker.type].icon} 전투 승리! ${this.UNIT_TYPES[defender.type].name} 격파`);
+            if (!isCity) {
+                this.units = this.units.filter(u => u !== defender);
+                this.addLog(`${this.UNIT_TYPES[attacker.type].icon} 전투 승리! ${this.UNIT_TYPES[defender.type].name} 격파`);
+            } else {
+                this.cities = this.cities.filter(c => c !== defender);
+                this.addLog(`🔥 도시 함락!`);
+            }
         } else {
             this.addLog(`⚔️ 전투: 적 ${dmg} 피해`);
         }
+        
+        if (defCity && defCity.hp <= 0 && this.cities.includes(defCity)) {
+            this.cities = this.cities.filter(c => c !== defCity);
+            this.addLog(`🔥 도시 함락!`);
+        }
+        
         this.checkWinCondition();
     },
 
