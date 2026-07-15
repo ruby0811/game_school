@@ -267,7 +267,8 @@ const genresData = [
                 image: "images/소울라이크.jpg",
                 def: "어두운 분위기, 극악의 난이도, 불친절한 시스템 속에서 죽어가며 적의 패턴을 외워 극복하는 쾌감을 중시하는 하드코어 액션 장르입니다.",
                 features: ["매우 높은 난이도", "스태미나 관리와 회피 중시", "사망 시 자원(소울) 페널티"],
-                examples: "다크 소울, 엘든 링, P의 거짓, 블러드본"
+                examples: "다크 소울, 엘든 링, P의 거짓, 블러드본",
+                hasGame: "soulslike"
             },
             {
                 name: "탄막 슈팅 (Bullet Hell) 💥",
